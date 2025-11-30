@@ -26,7 +26,7 @@ SHOW_PLOTS = False  # you can change to True
 # ========== 2. LOAD DATA ==========
 
 print("=== Loading dataset ===")
-df = pd.read_csv(DATA_FILE, sep=",")  # UCI uses semicolon in some versions; change sep=";" if needed
+df = pd.read_csv(DATA_FILE, sep=";")  # UCI uses semicolon in some versions; change sep=";" if needed
 print(f"Loaded {len(df)} rows and {df.shape[1]} columns from {DATA_FILE}\n")
 
 print("=== First 5 rows ===")
