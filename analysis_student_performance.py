@@ -49,8 +49,6 @@ missing_df = pd.DataFrame({
 
 print(missing_df, "\n")
 
-# You can also save this to a CSV if you want to include it as evidence
-missing_df.to_csv("missing_values_summary.csv")
 
 
 # ========== 4. CONSISTENCY CHECKS (CATEGORICAL VALUES & DUPLICATES) ==========
@@ -112,17 +110,16 @@ if "absences" in df.columns:
         plt.show()
 
 # Turn this ON if you want plots saved to files:
-SAVE_PLOTS = True
+#SAVE_PLOTS = True
 
-if "absences" in df.columns and SAVE_PLOTS:
+if "absences" in df.columns:
     plt.figure()
     df["absences"].hist(bins=20)
     plt.title("Absences Distribution")
     plt.xlabel("Number of absences")
     plt.ylabel("Number of students")
     plt.tight_layout()
-    plt.savefig("plot_absences_histogram.png")
-    plt.close()
+    plt.show()
 
 
 
@@ -166,38 +163,6 @@ if set(grade_cols):
     df["pass_fail"] = (df[target] >= 10).astype(int)
     print(df["pass_fail"].value_counts(normalize=True) * 100, "\n")
 
-# === Summary tables for key categorical variables ===
-
-summary_tables = {}
-
-if "school" in df.columns:
-    school_dist = (df["school"].value_counts()
-                   .to_frame(name="count"))
-    school_dist["percent"] = (school_dist["count"] / len(df) * 100).round(2)
-    summary_tables["school_distribution"] = school_dist
-    school_dist.to_csv("table_school_distribution.csv")
-    print("=== School distribution ===")
-    print(school_dist, "\n")
-
-if "sex" in df.columns:
-    sex_dist = (df["sex"].value_counts()
-                .to_frame(name="count"))
-    sex_dist["percent"] = (sex_dist["count"] / len(df) * 100).round(2)
-    summary_tables["sex_distribution"] = sex_dist
-    sex_dist.to_csv("table_sex_distribution.csv")
-    print("=== Sex distribution ===")
-    print(sex_dist, "\n")
-
-# Pass/fail distribution (if you created pass_fail)
-if "pass_fail" in df.columns:
-    pf_dist = (df["pass_fail"].value_counts()
-               .rename(index={0: "fail", 1: "pass"})
-               .to_frame(name="count"))
-    pf_dist["percent"] = (pf_dist["count"] / len(df) * 100).round(2)
-    summary_tables["pass_fail_distribution"] = pf_dist
-    pf_dist.to_csv("table_pass_fail_distribution.csv")
-    print("=== Pass/Fail distribution ===")
-    print(pf_dist, "\n")
 
 
 # ========== 7. FEATURE QUALITY / CORRELATION (DATA MINING) ==========
@@ -206,9 +171,6 @@ if grade_cols:
     print("=== Correlation with final grade (Feature Quality) ===")
     corr_with_G3 = df[num_cols].corr()[grade_cols[-1]].sort_values(ascending=False)
     print(corr_with_G3, "\n")
-
-    # Save correlation to CSV if needed
-    corr_with_G3.to_csv("correlation_with_final_grade.csv")
 
 
 print("=== Analysis complete. Check generated CSV files for summaries. ===")
