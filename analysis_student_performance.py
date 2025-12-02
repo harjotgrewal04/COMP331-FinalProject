@@ -17,10 +17,10 @@ import matplotlib.pyplot as plt
 # ========== 1. CONFIGURATION ==========
 
 # Change this to "student-por.csv" if you want the Portuguese dataset instead
-DATA_FILE = "student-mat.csv"
+DATA_FILE = "student-mat-messy.csv"
 
 # Set this to True if you want to show plots
-SHOW_PLOTS = False  # you can change to True
+SHOW_PLOTS = True  # you can change to True
 
 
 # ========== 2. LOAD DATA ==========
@@ -35,6 +35,34 @@ print(df.head(), "\n")
 print("=== Info ===")
 print(df.info(), "\n")
 
+if SHOW_PLOTS:
+    numeric_cols = df.select_dtypes(include=["number"]).columns.tolist()
+
+    # Example: focus on a few important ones
+    cols_to_plot = [c for c in ["G1", "G2", "G3"] if c in numeric_cols]
+
+    for col in cols_to_plot:
+        plt.figure()
+        df[col].hist(bins=15)
+        plt.title(f"Histogram of {col}")
+        plt.xlabel(col)
+        plt.ylabel("Number of students")
+        plt.tight_layout()
+        plt.show()
+
+if SHOW_PLOTS:
+    cat_cols = df.select_dtypes(include="object").columns.tolist()
+
+    # Choose some important categorical columns
+    for col in ["school", "sex", "internet", "guardian"]:
+        if col in df.columns:
+            plt.figure()
+            df[col].value_counts(dropna=False).plot(kind="bar")
+            plt.title(f"Distribution of {col}")
+            plt.xlabel(col)
+            plt.ylabel("Count")
+            plt.tight_layout()
+            plt.show()
 
 # ========== 3. COMPLETENESS CHECK (MISSING VALUES) ==========
 
@@ -108,20 +136,6 @@ if "absences" in df.columns:
         plt.xlabel("Absences")
         plt.ylabel("Count")
         plt.show()
-
-# Turn this ON if you want plots saved to files:
-#SAVE_PLOTS = True
-
-if "absences" in df.columns:
-    plt.figure()
-    df["absences"].hist(bins=20)
-    plt.title("Absences Distribution")
-    plt.xlabel("Number of absences")
-    plt.ylabel("Number of students")
-    plt.tight_layout()
-    plt.show()
-
-
 
 # ========== 6. BIAS / SAMPLING ANALYSIS (DATA MINING PERSPECTIVE) ==========
 
