@@ -37,8 +37,8 @@ if SHOW_PLOTS:
         plt.ylabel("Number of students")
         plt.tight_layout()
         # changed here
-        plt.show(block=False)
-        plt.pause(0.5)
+        plt.savefig(f"{col}_hist.png")
+        plt.close()
 
 if SHOW_PLOTS:
     cat_cols = df.select_dtypes(include="object").columns.tolist()
@@ -53,8 +53,8 @@ if SHOW_PLOTS:
             plt.ylabel("Count")
             plt.tight_layout()
             # changed here
-            plt.show(block=False)
-            plt.pause(0.5)
+            plt.savefig(f"{col}_bar.png")
+            plt.close()
 
 # ========== 3. COMPLETENESS CHECK (MISSING VALUES) ==========
 
@@ -127,10 +127,11 @@ if "absences" in df.columns:
         plt.title("Absences Distribution")
         plt.xlabel("Absences")
         plt.ylabel("Count")
-        plt.show(block=False)
-        plt.pause(0.5)
+        # changed here
+        plt.savefig("absences_hist.png")
+        plt.close()
 
-# ========== 6. BIAS / SAMPLING ANALYSIS (DATA MINING PERckSPECTIVE) ==========
+# ========== 6. BIAS / SAMPLING ANALYSIS (DATA MINING PERSPECTIVE) ==========
 
 print("=== Sampling / Demographic Bias Checks ===")
 
@@ -155,8 +156,9 @@ if "age" in df.columns:
         plt.title("Age Distribution")
         plt.xlabel("Age")
         plt.ylabel("Count")
-        plt.show(block=False)
-        plt.pause(0.5)
+        # changed here
+        plt.savefig("age_hist.png")
+        plt.close()
 
 # Parent education (socioeconomic bias proxy)
 parent_edu_cols = [c for c in ["Medu", "Fedu"] if c in df.columns]
