@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import sys  # added
 
 # ========== 1. CONFIGURATION ==========
 
@@ -9,6 +10,10 @@ DATA_FILE = "student-mat-messy.csv"
 
 # Set this to True if you want to show plots
 SHOW_PLOTS = True  # you can change to True
+
+# Redirect all print output to a file
+output_file = open("analysis_output.txt", "w")
+sys.stdout = output_file
 
 
 # ========== 2. LOAD DATA ==========
@@ -184,3 +189,6 @@ if grade_cols:
 
 
 print("=== Analysis complete. Check generated CSV files for summaries. ===")
+
+# Close the output file
+output_file.close()
