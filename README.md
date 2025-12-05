@@ -8,6 +8,7 @@
   Overall, this project shows key data quality issues in datasets which can be present in real-world situations and how they need to be handled. This proejct also includes graphs and charts to better demonstrate distrubution of different features apart of the dataset. Learning how to analyze a dataset is a crucial step in various applications which are applied and used in the real-world.
 
 ## **References**
+- CHATGPT 5.1
 - Daneshpajouh, A. (2025). Data quality [Lecture slides]. COMP/STAT-331: Data Quality, University of the Fraser Valley.
 - Aquino, J., & Jonker, A. (2025, November 24). Data Quality Dimensions. Retrieved from Ibm.com website: https://www.ibm.com/think/topics/data-quality-dimensions
 - W3Schools. (2024). Pandas Tutorial. Retrieved from www.w3schools.com website: https://www.w3schools.com/python/pandas/default.asp
