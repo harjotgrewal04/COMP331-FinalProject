@@ -130,7 +130,7 @@ if "absences" in df.columns:
         plt.show(block=False)
         plt.pause(0.5)
 
-# ========== 6. BIAS / SAMPLING ANALYSIS (DATA MINING PERSPECTIVE) ==========
+# ========== 6. BIAS / SAMPLING ANALYSIS (DATA MINING PERckSPECTIVE) ==========
 
 print("=== Sampling / Demographic Bias Checks ===")
 
