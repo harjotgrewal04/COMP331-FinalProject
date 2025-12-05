@@ -1,15 +1,3 @@
-"""
-Data Quality & Bias Analysis for Student Performance Dataset
-Option 2 - Data Mining Quality & Bias Analysis
-
-- Works with either student-mat.csv or student-por.csv
-- Checks:
-  * Completeness (missing values)
-  * Consistency (categorical codes, duplicates)
-  * Validity (ranges / outliers)
-  * Bias (sampling, demographics)
-"""
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -48,7 +36,9 @@ if SHOW_PLOTS:
         plt.xlabel(col)
         plt.ylabel("Number of students")
         plt.tight_layout()
-        plt.show()
+        # changed here
+        plt.show(block=False)
+        plt.pause(0.5)
 
 if SHOW_PLOTS:
     cat_cols = df.select_dtypes(include="object").columns.tolist()
@@ -62,7 +52,9 @@ if SHOW_PLOTS:
             plt.xlabel(col)
             plt.ylabel("Count")
             plt.tight_layout()
-            plt.show()
+            # changed here
+            plt.show(block=False)
+            plt.pause(0.5)
 
 # ========== 3. COMPLETENESS CHECK (MISSING VALUES) ==========
 
@@ -135,7 +127,8 @@ if "absences" in df.columns:
         plt.title("Absences Distribution")
         plt.xlabel("Absences")
         plt.ylabel("Count")
-        plt.show()
+        plt.show(block=False)
+        plt.pause(0.5)
 
 # ========== 6. BIAS / SAMPLING ANALYSIS (DATA MINING PERSPECTIVE) ==========
 
@@ -162,7 +155,8 @@ if "age" in df.columns:
         plt.title("Age Distribution")
         plt.xlabel("Age")
         plt.ylabel("Count")
-        plt.show()
+        plt.show(block=False)
+        plt.pause(0.5)
 
 # Parent education (socioeconomic bias proxy)
 parent_edu_cols = [c for c in ["Medu", "Fedu"] if c in df.columns]
